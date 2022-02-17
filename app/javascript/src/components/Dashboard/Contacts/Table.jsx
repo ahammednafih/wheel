@@ -53,7 +53,6 @@ const Table = ({ contacts = [], handleEdit, handleDelete }) => {
           currentPageNumber={currentPage}
           handlePageChange={page => setCurrentPage(page)}
           defaultPageSize={TABLE_PAGE_SIZE}
-          onRowClick={(_, contact) => handleEdit(contact)}
         />
       </div>
     </>
