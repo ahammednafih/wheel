@@ -1,0 +1,31 @@
+.ant-table-wrapper {
+  .ant-table-container {
+    tr,
+    th,
+    td {
+      border: none !important;
+    }
+
+    .ant-table-thead > tr {
+      th.ant-table-cell {
+        color: theme("colors.gray.300");
+      }
+    }
+
+    .ant-table-body {
+      tr:nth-child(even) {
+        background-color: theme("colors.white");
+      }
+
+      tr:nth-child(odd) {
+        background-color: theme("colors.gray.100");
+      }
+
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
