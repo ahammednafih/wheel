@@ -7,8 +7,8 @@ namespace :api, defaults: { format: :json } do
       delete "logout", to: "sessions#destroy", as: "logout"
     end
 
-    resources :users, only: [:show, :create, :update, :destroy], constraints: { id: /.*/ }
-    resources :notes, only: [:index, :create, :update, :destroy] do
+    resources :users, except: %i[index new edit], constraints: { id: /.*/ }
+    resources :notes, except: %i[new show edit] do
       collection do
         post "bulk_delete"
       end
