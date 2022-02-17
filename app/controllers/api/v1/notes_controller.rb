@@ -20,7 +20,7 @@ class Api::V1::NotesController < Api::V1::BaseController
   end
 
   def destroy
-    @note.destroy
+    @note.destroy!
 
     respond_with_success(t("successfully_deleted", count: 1, entity: "Note"))
   end

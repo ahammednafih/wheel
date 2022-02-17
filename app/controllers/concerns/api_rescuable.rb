@@ -8,6 +8,7 @@ module ApiRescuable
     rescue_from ActiveRecord::RecordInvalid, with: :handle_validation_error
     rescue_from ActiveRecord::RecordNotUnique, with: :handle_record_not_unique
     rescue_from ActionController::ParameterMissing, with: :handle_api_error
+    rescue_from ActiveRecord::RecordNotDestroyed, with: :handle_record_not_destroyed
   end
 
   private
@@ -15,6 +16,11 @@ module ApiRescuable
     def handle_validation_error(exception)
       log_exception(exception)
       respond_with_error(exception.record.errors_to_sentence)
+    end
+
+    def handle_record_not_destroyed(exception)
+      log_exception(exception)
+      respond_with_error(t("unable_to_delete"), :unprocessable_entity)
     end
 
     def handle_record_not_found(exception)
