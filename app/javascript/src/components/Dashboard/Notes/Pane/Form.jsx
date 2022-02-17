@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
+import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+import { Input, Textarea, Select } from "neetoui/formik";
 
 import notesApi from "apis/notes";
+
+import { ASSIGNED_CONTACT_OPTIONS, TAG_OPTIONS } from "./constants";
 
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
 
@@ -37,20 +40,38 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
         <Form className="w-full">
           <Pane.Body className="space-y-6">
             <Input
+              required
               label="Title"
               name="title"
               className="w-full flex-grow-0"
-              required
             />
             <Textarea
+              required
               label="Description"
               name="description"
               className="w-full flex-grow-0"
-              rows={8}
+              rows={2}
+            />
+            <Select
+              isMulti
               required
+              label="Assigned Contact"
+              name="assigned_contacts"
+              options={ASSIGNED_CONTACT_OPTIONS}
+              placeholder="Select Role"
+              className="w-full flex-grow-0"
+            />
+            <Select
+              isMulti
+              required
+              label="Tags"
+              name="tags"
+              options={TAG_OPTIONS}
+              placeholder="Select Tag"
+              className="w-full flex-grow-0"
             />
           </Pane.Body>
-          <Pane.Footer>
+          <Pane.Footer className="border-t">
             <Button
               type="submit"
               label={isEdit ? "Update" : "Save Changes"}
@@ -60,6 +81,7 @@ export default function NoteForm({ onClose, refetch, note, isEdit }) {
               disabled={isSubmitting}
               loading={isSubmitting}
               onClick={() => setSubmitted(true)}
+              icon={Check}
             />
             <Button
               onClick={onClose}
