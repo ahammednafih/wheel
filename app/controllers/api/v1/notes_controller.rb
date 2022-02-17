@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::NotesController < Api::V1::BaseController
-  before_action :load_note!, only: %i[update delete]
+  before_action :load_note!, only: %i[update destroy]
   before_action :load_notes, only: :bulk_delete
 
   def index
@@ -17,6 +17,12 @@ class Api::V1::NotesController < Api::V1::BaseController
   def update
     @note.update!(note_params)
     respond_with_success(t("successfully_updated", entity: "Note"))
+  end
+
+  def destroy
+    @note.destroy
+
+    respond_with_success(t("successfully_deleted", count: 1, entity: "Note"))
   end
 
   def bulk_delete
