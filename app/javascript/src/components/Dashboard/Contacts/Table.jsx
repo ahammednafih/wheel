@@ -43,19 +43,17 @@ const Table = ({ contacts = [], handleEdit, handleDelete }) => {
   );
 
   return (
-    <>
-      <div className="notes-table-height w-full">
-        <NeetoUITable
-          allowRowClick
-          fixedHeight
-          rowData={contacts}
-          columnData={tableColumnData}
-          currentPageNumber={currentPage}
-          handlePageChange={page => setCurrentPage(page)}
-          defaultPageSize={TABLE_PAGE_SIZE}
-        />
-      </div>
-    </>
+    <div className="notes-table-height w-full">
+      <NeetoUITable
+        allowRowClick
+        fixedHeight
+        rowData={contacts}
+        columnData={tableColumnData}
+        currentPageNumber={currentPage}
+        handlePageChange={page => setCurrentPage(page)}
+        defaultPageSize={TABLE_PAGE_SIZE}
+      />
+    </div>
   );
 };
 
